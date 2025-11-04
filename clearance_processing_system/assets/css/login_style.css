@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: #3E6347; 
+    --card-bg-opacity: rgba(255, 255, 255, 0.25); 
+    --input-bg: #F0F0F0;
+    --text-color: #0F280B;
+    --accent-color: #0F280B;
+    --login-btn-bg: #658139;
+    --link-color: #DC3545;
+    --blue-link-contrast: #66C2FF;
+    --white-text: #FFFFFF;
+    
+    --btn-student: #2196F3;
+    --btn-faculty: #C12B27;
+    --btn-organization: #4CAF50;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.43), 
+        rgba(0, 0, 0, 0.43)
+    ),
+    url("../img/cssBuilding.png"); 
+    
+    background-size: cover;
+    background-position: center;
+    
+    background-attachment: fixed; 
+}
+
+.login-card, .reg-card { 
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 5px; 
+}
+
+.logo-container img {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+}
+
+h1, .reg-card h3 {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--white-text);
+    margin: 5px 0 15px 0;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; 
+    margin-bottom: 12px; 
+}
+
+label {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--white-text);
+    text-align: left; 
+}
+
+input[type="text"],
+input[type="email"], 
+input[type="password"],
+select { 
+    width: 100%;
+    padding: 14px;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: var(--text-color);
+    text-align: left; 
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+input[type="password"], input[type="email"] {
+    text-align: center; 
+}
+
+input::placeholder {
+    color: #555;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: var(--login-btn-bg);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 15px; 
+    transition: background-color 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #556c30;
+}
+
+.footer-links {
+    margin-top: 10px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.footer-links a:first-child {
+    color: var(--white-text); 
+}
+
+.footer-links a:first-child:hover {
+    text-decoration: underline;
+    color: var(--blue-link-contrast);
+}
+
+.footer-links a:last-child {
+    color: var(--link-color); 
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: var(--link-color);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.reg-card p {
+    color: var(--white-text);
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.reg-btn {
+    display: block;
+    width: 80%;
+    padding: 12px;
+    margin: 10px auto;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: opacity 0.2s;
+}
+
+.reg-btn-student {
+    background-color: var(--btn-student);
+}
+.reg-btn-faculty {
+    background-color: var(--btn-faculty);
+}
+.reg-btn-organization {
+    background-color: var(--btn-organization);
+}
+
+.reg-card .footer-links {
+    justify-content: center;
+    gap: 15px;
+}
+
+.reg-card .footer-links small {
+    color: var(--white-text);
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 1.2em;
+    }
+}
