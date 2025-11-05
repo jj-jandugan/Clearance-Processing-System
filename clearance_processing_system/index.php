@@ -8,7 +8,6 @@ $email = "";
 $password = "";
 $error = "";
 
-// Allowable time discrepancy in seconds (e.g., 5 minutes)
 define('MAX_TIME_DIFFERENCE', 300);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,21 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user === 'TIME_TRAVEL_ERROR') {
             $error = "Time Discrepancy Error: Cannot log in. Your system time is set before the account's creation date. Please check your clock.";
         } elseif ($user) {
-            // Check time difference between server and account creation
             $serverTime = time();
             $accountCreation = strtotime($user['created_at'] ?? date('Y-m-d H:i:s'));
             $timeDiff = $serverTime - $accountCreation;
 
             if ($timeDiff < -MAX_TIME_DIFFERENCE) {
-                // Account creation is in the future (more than allowed discrepancy)
                 $error = "Time Discrepancy Error: Your system clock is too far behind the server. Cannot log in.";
             } else {
-                // Normal login
                 $_SESSION['account_id'] = $user['account_id'];
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['ref_id'] = $accountObj->ref_id;
 
-                // Redirect based on role
                 switch ($user['role']) {
                     case 'student':
                         header("Location: student/dashboard.php");
@@ -107,3 +102,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </body>
 </html>
+
