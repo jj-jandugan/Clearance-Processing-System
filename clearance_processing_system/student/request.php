@@ -203,12 +203,10 @@ function getOrgLogo($orgName) {
                 $org_name = htmlspecialchars($org['org_name']);
                 $logo_url = getOrgLogo($org_name);
                 
-                // Escape requirements for JS safely.
                 $js_safe_req = addslashes(preg_replace('/\s+/', ' ', $org['requirements']));
                 
                 $badge_status_class = strtolower($status);
-                
-                // --- DISABLING LOGIC ---
+
                 $is_disabled = ($status === 'Approved' || $status === 'Pending');
                 $card_class = $is_disabled ? 'signer-card-org status-approved-card' : 'signer-card-org';
                 $onclick_handler = $is_disabled ? '' : "openModal('Organization',{$org['org_id']}, '{$js_safe_req}', '".addslashes($org_name)."')";
@@ -294,7 +292,6 @@ function getOrgLogo($orgName) {
 </div>
 
 <script>
-// Function to update the file input visibility when a file is selected (UX improvement)
 document.getElementById('requirement_file').addEventListener('change', function() {
     const fileName = this.files.length > 0 ? this.files[0].name : "Select your file or drag and drop";
     const uploadBox = this.closest('.file-upload-box');
@@ -307,19 +304,16 @@ document.getElementById('requirement_file').addEventListener('change', function(
 function openModal(type, ref, req, name) {
     document.getElementById('mName').innerText = name;
     
-    // FIX: Safely display plain text and replace line breaks with HTML <br> tags.
     const reqSpan = document.getElementById('mReq');
     
-    // The replace function converts escaped newlines from the PHP string back to <br> tags.
     reqSpan.innerHTML = req.replace(/\\r\\n|\r\n|\n|\r/g, '<br>');
     
     document.getElementById('in_type').value = type;
     document.getElementById('in_ref').value = ref;
     document.getElementById('modal').style.display = 'block';
 
-    // Reset file input display text on modal open
     const fileInput = document.getElementById('requirement_file');
-    fileInput.value = ''; // Clear actual file
+    fileInput.value = ''; 
     const uploadBox = fileInput.closest('.file-upload-box');
     const pTag = uploadBox.querySelector('p:first-of-type');
     pTag.textContent = "Select your file or drag and drop";
@@ -327,4 +321,5 @@ function openModal(type, ref, req, name) {
 function closeModal() { document.getElementById('modal').style.display = 'none'; }
 </script>
 </body>
+
 </html>
